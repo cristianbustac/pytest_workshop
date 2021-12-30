@@ -1,0 +1,27 @@
+version: "3"
+
+services: 
+  app:
+    build: .
+    volumes: 
+      - ./app:/usr/src/app
+    image: app/fastapi
+    environment: 
+      - POSTGRES_DATABASE_URL=postgres://postgres:postgres@DB:5432/app
+      - DEBUGGER=True      
+    
+    depends_on: 
+      - DB
+    ports: 
+      - "8000:8000"
+      - "11000:10000"
+
+  DB: 
+    image: app-db
+    container_name: app-db
+    build:
+      context: ./DB
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

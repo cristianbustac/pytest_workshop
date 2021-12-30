@@ -1,0 +1,20 @@
+version: "3.2"
+
+services:
+  app-db-test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: python -m pytest --cov="."
+    volumes:
+      - ../:/usr/src/app/
+    environment:
+      - DEBUGGER=False
+      - ENVIRONMENT=dev
+      - POSTGRES_DATABASE_URL=postgres://postgres:postgres@DB:5432/app
+      - POSTGRES_DATABASE_TEST_URL=sqlite://./storage/app
+      - DEFAULT_DATA=False
+      - DEFAULT_DEV_DATA=False
+      - USER_PASSWORD=test
+      - USER_2_PASSWORD=test2
+      - USER_PASSWORD_UPDATE=test1

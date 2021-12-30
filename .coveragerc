@@ -1,0 +1,3 @@
+[run]
+omit = tests/*, app/debugger.py, *__init__.py, app/infra/postgres/config.py, app/main.py, app/infra/services/base.py
+branch = True

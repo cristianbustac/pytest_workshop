@@ -1,0 +1,7 @@
+**
+
+!app/*
+!storage/*
+!Pipfile*
+!test/*
+!db/*
